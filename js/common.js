@@ -33,5 +33,17 @@
         			$('.mob-menu__items').toggleClass('mob-menu__items_active');
         		});
         	}
+
+        	$(window).resize(function() {
+	            if ($(window).width() < 1260) {
+	        		$('.insurance-list__body').removeClass('insurance-list__body_type_list');
+	        		$('.insurance-list__body').addClass('insurance-list__body_type_tiles');
+
+	        		$('.mob-menu__hamburger').click(function() {
+	        			$(this).toggleClass('mob-menu__hamburger_active');
+	        			$('.mob-menu__items').toggleClass('mob-menu__items_active');
+	        		});
+	        	}
+	        });
     })
 })(jQuery);
