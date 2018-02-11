@@ -1,0 +1,229 @@
+//vars
+$site-width: 1200px
+$text-color: #000
+$text-grey-color: #8d8d8c
+$borders-color: #f5f5f5
+$active-menu-color: #2985f7
+$black-color: #000
+$darkgrey-color: #a4a4a3
+$blue-color: #2985f7
+
+//commonstyles
+*, *:after, *:before
+	box-sizing: border-box
+
+*, *:focus, *:active
+	outline: none
+
+.clearfix
+	&:before,
+	&:after
+		display: table
+		content: ''
+	&:after
+		clear: both
+
+body
+	position: relative
+	min-width: 320px
+	margin: 0
+	font-family: sans-serif
+	font-weight: normal
+	font-size: 14px
+	color: $text-color
+	line-height: 1.5
+	-webkit-font-smoothing: antialised
+	overflow-x: hidden
+
+.supwrap
+	.clearfix
+	display: flex
+	width: $site-width
+	margin: 0 auto
+
+//header
+.header
+	width: 100%
+	height: 70px
+	margin: 0 auto
+	border-bottom: 1px solid $borders-color
+	box-shadow: 0 0 15px -5px rgba(0, 0, 0, 0.6)
+
+.logo
+	width: 90px
+	height: 25px
+	margin: auto 0
+	img
+		width: 100%
+		height: 100%
+		object-fit: contain
+
+.main-menu
+	display: flex
+	flex-grow: 1
+	flex-direction: row
+	justify-content: center
+	height: 100%
+
+.main-menu__item
+	position: relative
+	width: auto
+	margin: 0 20px
+	padding: 25px 0
+	font-weight: 400
+	text-transform: capitalize
+	color: $text-grey-color
+	cursor: pointer
+	transition: all 0.5s
+	&:after
+		content: ''
+		position: absolute
+		display: block
+		bottom: 0
+		left: -10px
+		width: calc(100% + 20px)
+		height: 0px
+		background-color: $active-menu-color
+		transition: all 0.5s
+	&:hover
+		font-weight: 500
+		color: $text-color
+		transition: all 0.5s
+		&:after
+			height: 3px
+			transition: all 0.5s
+
+.main-menu__item_active
+	font-weight: 500
+	color: $text-color
+	&:after
+		height: 3px
+		transition: all 0.5s
+
+
+//main block
+.main-wrapper
+	display: flex
+	width: $site-width
+	margin: 0 auto
+	padding: 40px 0
+
+.insurance-list
+	width: 100%
+	height: auto
+
+.insurance-list__header
+	display: flex
+	width: 100%
+	padding-bottom: 10px
+	border-bottom: 2px solid $borders-color
+
+.insurance-list__name
+	flex-grow: 1
+	font-size: 30px
+	color: $text-color
+
+.insurance-list__type-togglers
+	display: flex
+	align-items: center
+	justify-content: center
+
+.insurance-list__toggler-list
+	width: auto
+	height: 18px
+	padding: 0 15px 0 0
+	cursor: pointer
+	&:hover
+		span
+			background-color: $blue-color
+			transition: all 0.3s
+	span
+		display: block
+		width: 18px
+		height: 2px
+		margin-bottom: 3px
+		background-color: $black-color
+		transition: all 0.3s
+		&:last-child
+			margin-bottom: 0
+
+.insurance-list__divider
+	width: 2px
+	height: 30px
+	background-color: $borders-color
+
+.insurance-list__toggler-tiles
+	display: flex
+	flex-flow: row wrap
+	justify-content: space-around
+	width: 33px
+	height: 18px
+	padding: 0 0 0 15px
+	cursor: pointer
+	&:hover
+		span
+			border: 2px solid $blue-color
+			transition: all 0.3s
+	span
+		display: inline-block
+		width: 8px
+		height: 8px
+		margin-right: 2px
+		margin-bottom: 2px
+		border: 2px solid $darkgrey-color
+		transition: all 0.3s
+		&:nth-child(2n)
+			margin-right: 0
+
+.insurance-list__body
+	&.insurance-list__body_type_list
+
+.insurance-list__table-header
+	padding-top: 30px
+	font-size: 14px
+	color: $text-grey-color
+	text-transform: uppercase
+	letter-spacing: 1px
+
+.insurance-list__table-th
+
+//footer
+.footer
+	width: 100%
+	height: 80px
+	margin: 0 auto
+	font-size: 12px
+	border-top: 2px solid $borders-color
+
+.copyright
+	width: auto
+	height: 25px
+	margin: 30px 0
+	margin-right: 10px
+
+.footer-menu
+	display: flex
+	flex-grow: 1
+	flex-direction: row
+	justify-content: start
+	height: 100%
+
+.footer-menu__item
+	position: relative
+	width: auto
+	margin: 0 20px
+	padding: 30px 0
+	font-weight: 400
+	text-transform: capitalize
+	color: $text-grey-color
+	cursor: pointer
+	transition: all 0.5s
+	&:hover
+		font-weight: 500
+		color: $text-color
+		transition: all 0.5s			
+
+.footer-menu__item_active
+	font-weight: 500
+	color: $text-color
+	transition: all 0.5s
