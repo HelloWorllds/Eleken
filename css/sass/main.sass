@@ -2,11 +2,21 @@
 $site-width: 1200px
 $text-color: #000
 $text-grey-color: #8d8d8c
-$borders-color: #f5f5f5
+$borders-color: #e8e8e8
 $active-menu-color: #2985f7
 $black-color: #000
+$white-color: #fff
 $darkgrey-color: #a4a4a3
 $blue-color: #2985f7
+$star-enabled-color: #ffc000
+$star-disabled-color: #dddddd
+$info-label-bg-color: #e4f0ff
+
+$platinum-color: #999
+$gold-color: #eca750
+$silver-color: #adc1c4
+$bronze-color: #ab6341
+$catastrophic-color: #d54a51
 
 //commonstyles
 *, *:after, *:before
@@ -39,6 +49,7 @@ body
 	.clearfix
 	display: flex
 	width: $site-width
+	max-width: 100%
 	margin: 0 auto
 
 //header
@@ -100,11 +111,14 @@ body
 		height: 3px
 		transition: all 0.5s
 
+.mob-menu
+	display: none
 
 //main block
 .main-wrapper
 	display: flex
 	width: $site-width
+	max-width: 100%
 	margin: 0 auto
 	padding: 40px 0
 
@@ -116,7 +130,7 @@ body
 	display: flex
 	width: 100%
 	padding-bottom: 10px
-	border-bottom: 2px solid $borders-color
+	border-bottom: 1px solid $borders-color
 
 .insurance-list__name
 	flex-grow: 1
@@ -175,17 +189,395 @@ body
 		&:nth-child(2n)
 			margin-right: 0
 
-.insurance-list__body
-	&.insurance-list__body_type_list
-
 .insurance-list__table-header
-	padding-top: 30px
-	font-size: 14px
-	color: $text-grey-color
-	text-transform: uppercase
-	letter-spacing: 1px
+	display: none
 
-.insurance-list__table-th
+$width: 15%, 9.75%, 8.9%, 14.55%, 7.3%, 9.6%, 9.8%, 10%, 15.1%
+
+@for $i from 1 through length($width)
+	.insurance-list__table-th:nth-child(#{$i})
+		width: nth($width, $i)
+
+.insurance-list__table-body
+	display: flex
+	flex-wrap: wrap
+	width: 100%
+
+.insurance-list__body.insurance-list__body_type_list
+	.insurance-list__table-header
+		display: flex
+		padding-top: 30px
+		font-size: 12px
+		color: $text-grey-color
+		text-transform: uppercase
+	.insurance-item__name
+		display: none
+	.insurance-item
+		display: flex
+		flex: 0 0 100%
+		align-items: center
+		padding: 20px 0
+		border-bottom: 1px solid $borders-color
+		transition: all 0.3s
+	.insurance-item__logo-block
+		width: 15%
+		font-size: 0
+		.clearfix
+	@for $i from 2 through length($width)-2
+		.insurance-item__info-block:nth-child(#{$i})
+			width: nth($width, $i)
+	.insurance-item__price-block
+		width: 10%
+	.insurance-item__buttons
+		display: flex
+		width: 15.1%
+	.insurance-item__logo
+		float: left
+		width: 40px
+		height: 40px
+		margin-right: 20px
+		vertical-align: top
+		img
+			width: 100%
+			height: 100%
+			object-fit: contain
+	.insurance-item__company-name
+		display: inline-block
+		width: calc(100% - 60px)
+		font-size: 14px
+		vertical-align: top
+	.insurance-rating
+		display: inline-block
+		width: calc(100% - 60px)
+	.insurance-rating__star
+		display: inline-block
+		font-size: 14px
+		margin-right: 2px
+		vertical-align: middle
+		&:last-child
+			margin-right: 0
+	.insurance-rating__star_mode_enabled
+		color: $star-enabled-color
+	.insurance-rating__star_mode_disabled
+		color: $star-disabled-color
+	.insurance-item__btn-overview,
+	.insurance-item__btn-buy
+		height: 30px
+		border-radius: 5px
+		font-size: 12px
+		text-transform: uppercase
+		cursor: pointer
+		transition: all 0.3s
+	.insurance-item__btn-overview
+		width: 109px
+		margin-right: 5px
+		border: 1px solid $borders-color
+		color: $blue-color
+		letter-spacing: 1px
+		background-color: transparent
+		&:hover
+			border: 1px solid $blue-color
+			transition: all 0.3s
+	.insurance-item__btn-buy
+		width: 68px
+		border: none
+		color: $white-color
+		letter-spacing: 1px
+		background-color: $blue-color
+		&:hover
+			background-color: darken($blue-color, 10%)
+			transition: all 0.3s
+	.insurance-item__metal
+		position: relative
+		padding-left: 19px
+		&:after
+			content: ''
+			position: absolute
+			display: inline-block
+			top: 50%
+			left: 0
+			width: 16px
+			height: 16px
+			border-radius: 50%
+			transform: translate(0, -50%)
+	.insurance-item__metal_type_platinum:after
+		background-color: $platinum-color
+	.insurance-item__metal_type_gold:after
+		background-color: $gold-color
+	.insurance-item__metal_type_silver:after
+		background-color: $silver-color
+	.insurance-item__metal_type_bronze:after
+		background-color: $bronze-color
+	.insurance-item__metal_type_catastrophic:after
+		background-color: $catastrophic-color
+	.insurance-info
+		position: relative
+		display: inline-block
+		vertical-align: middle
+		text-align: center
+		&.insurance-info_position_left
+			display: none
+	.insurance-info__label
+		width: 14px
+		height: 14px
+		margin-left: 5px
+		border-radius: 50%
+		font-size: 12px
+		color: $blue-color
+		line-height: 14px
+		background-color: $info-label-bg-color
+		cursor: pointer
+		&:hover + .insurance-info__text-block
+			animation: tooltip-show 0.3s
+			animation-fill-mode: forwards
+			z-index: 1
+	.insurance-info__text-block
+		position: absolute
+		top: calc(100% + 15px)
+		left: 50%
+		width: 280px
+		height: auto
+		padding: 10px
+		border: none
+		border-radius: 10px
+		background-color: rgba(255, 255, 255, 0.9)
+		opacity: 0
+		box-shadow: 0 0 15px -5px rgba(0, 0, 0, 0.6)
+		animation: tooltip-hide 0.3s
+		animation-fill-mode: forwards
+		transform: translate(-50%, 0)
+		z-index: -1
+		&:before,
+		&:after
+			content: ''
+			position: absolute
+			display: block
+			height: 15px
+			background-color: rgba(255, 255, 255, 0.9)
+		&:before
+			top: 0
+			left: 45%
+			width: 26px
+			z-index: 2
+		&:after
+			top: -8px
+			left: 50%
+			width: 15px
+			box-shadow: 0 0 15px -3px rgba(0, 0, 0, 0.6)
+			transform: translate(-50%, 0) rotate(45deg)
+			z-index: 1
+
+.insurance-list__body.insurance-list__body_type_tiles
+	padding-top: 40px
+	.insurance-list__table-body
+		flex-direction: row
+		justify-content: space-between
+		align-items: flex-start
+	.insurance-item
+		position: relative
+		display: flex
+		flex-basis: 280px
+		flex-wrap: wrap
+		margin-bottom: 40px
+		padding: 30px 30px 70px 30px
+		border: 1px solid $borders-color
+		border-radius: 2px
+		font-size: 0
+		transition: all 0.3s
+	.insurance-item__logo-block
+		flex: 0 0 100%
+		font-size: 0
+		margin-bottom: 30px
+		.clearfix
+	.insurance-item__info-block
+		display: flex
+		flex-direction: row
+		align-items: baseline
+		flex: 0 0 100%
+		padding: 10px 0
+		font-size: 14px
+		.clearfix
+	.insurance-item__name
+		flex-grow: 1
+		color: $text-grey-color
+	.insurance-item__value
+		display: flex
+		order: 1
+		color: $text-color
+	.insurance-item__price-block
+		flex: 0 0 100%
+		margin-top: 20px
+		font-size: 35px
+		font-weight: 100
+		color: $text-color
+		text-align: center
+		span
+			font-size: 24px
+	.insurance-item__buttons
+		position: absolute
+		display: flex
+		bottom: 0
+		left: 0
+		right: 0
+		flex: 0 0 100%
+	.insurance-item__logo
+		float: left
+		width: 55px
+		height: 55px
+		margin-right: 20px
+		vertical-align: top
+		img
+			width: 100%
+			height: 100%
+			object-fit: contain
+	.insurance-item__company-name
+		display: inline-block
+		width: calc(100% - 75px)
+		font-size: 20px
+		vertical-align: top
+	.insurance-rating
+		display: inline-block
+		width: calc(100% - 75px)
+	.insurance-rating__star
+		display: inline-block
+		font-size: 19px
+		margin-right: 2px
+		vertical-align: middle
+		&:last-child
+			margin-right: 0
+	.insurance-rating__star_mode_enabled
+		color: $star-enabled-color
+	.insurance-rating__star_mode_disabled
+		color: $star-disabled-color
+	.insurance-item__btn-overview,
+	.insurance-item__btn-buy
+		height: 40px
+		font-size: 12px
+		text-transform: uppercase
+		cursor: pointer
+		transition: all 0.3s
+	.insurance-item__btn-overview
+		width: 50%
+		border: 1px solid transparent
+		border-top: 1px solid $borders-color
+		border-radius: 0 0 0 3px
+		color: $blue-color
+		letter-spacing: 1px
+		background-color: transparent
+		&:hover
+			border: 1px solid $blue-color
+			transition: all 0.3s
+	.insurance-item__btn-buy
+		width: calc(50% + 2px)
+		margin-right: -1px
+		border: none
+		border-radius: 0 0 3px 0
+		color: $white-color
+		letter-spacing: 1px
+		background-color: $blue-color
+		&:hover
+			background-color: darken($blue-color, 10%)
+			transition: all 0.3s
+	.insurance-item__metal
+		position: relative
+		padding-left: 19px
+		&:after
+			content: ''
+			position: absolute
+			display: inline-block
+			top: 50%
+			left: 0
+			width: 16px
+			height: 16px
+			border-radius: 50%
+			transform: translate(0, -50%)
+	.insurance-item__metal_type_platinum:after
+		background-color: $platinum-color
+	.insurance-item__metal_type_gold:after
+		background-color: $gold-color
+	.insurance-item__metal_type_silver:after
+		background-color: $silver-color
+	.insurance-item__metal_type_bronze:after
+		background-color: $bronze-color
+	.insurance-item__metal_type_catastrophic:after
+		background-color: $catastrophic-color
+	.insurance-info
+		position: relative
+		display: flex
+		text-align: center
+		&.insurance-info_position_left
+			float: left
+			.insurance-info__label
+				margin-right: 5px
+		&.insurance-info_position_right
+			order: 2
+			.insurance-info__label
+				margin-left: 5px
+	.insurance-info__label
+		width: 14px
+		height: 14px
+		border-radius: 50%
+		font-size: 12px
+		color: $blue-color
+		line-height: 14px
+		background-color: $info-label-bg-color
+		cursor: pointer
+		&:hover + .insurance-info__text-block
+			animation: tooltip-show 0.3s
+			animation-fill-mode: forwards
+			z-index: 1
+	.insurance-info__text-block
+		position: absolute
+		top: calc(100% + 15px)
+		left: 50%
+		width: 280px
+		height: auto
+		padding: 10px
+		border: none
+		border-radius: 10px
+		background-color: rgba(255, 255, 255, 0.9)
+		opacity: 0
+		box-shadow: 0 0 15px -5px rgba(0, 0, 0, 0.6)
+		animation: tooltip-hide 0.3s
+		animation-fill-mode: forwards
+		transform: translate(-50%, 0)
+		z-index: -1
+		&:before,
+		&:after
+			content: ''
+			position: absolute
+			display: block
+			height: 15px
+			background-color: rgba(255, 255, 255, 0.9)
+		&:before
+			top: 0
+			left: 45%
+			width: 26px
+			z-index: 2
+		&:after
+			top: -8px
+			left: 50%
+			width: 15px
+			box-shadow: 0 0 15px -3px rgba(0, 0, 0, 0.6)
+			transform: translate(-50%, 0) rotate(45deg)
+			z-index: 1
+
+
+@keyframes tooltip-show
+	0%
+		top: calc(100% + 25px)
+		opacity: 0
+	100%
+		top: calc(100% + 15px)
+		opacity: 1
+
+@keyframes tooltip-hide
+	0%
+		top: calc(100% + 15px)
+		opacity: 1
+	100%
+		top: calc(100% + 25px)
+		opacity: 0
 
 //footer
 .footer
@@ -193,7 +585,7 @@ body
 	height: 80px
 	margin: 0 auto
 	font-size: 12px
-	border-top: 2px solid $borders-color
+	border-top: 1px solid $borders-color
 
 .copyright
 	width: auto
