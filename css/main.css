@@ -89,8 +89,10 @@ html, body {
   width: auto;
   margin-right: 40px;
   padding: 25px 0;
-  font-weight: 400;
+  font-style: regular;
   text-transform: capitalize;
+  line-height: 19px;
+  text-align: center;
   color: #8d8d8c;
   cursor: pointer;
   -webkit-transition: all 0.5s;
@@ -125,7 +127,6 @@ html, body {
 }
 
 .main-menu__item_active {
-  font-weight: 500;
   color: #000;
 }
 
@@ -161,7 +162,7 @@ html, body {
   display: -ms-flexbox;
   display: flex;
   width: 100%;
-  padding-bottom: 8px;
+  padding-bottom: 11px;
   border-bottom: 1px solid #e8e8e8;
 }
 
@@ -319,6 +320,7 @@ html, body {
   padding-top: 30px;
   font-style: bold;
   font-size: 10px;
+  line-height: 14px;
   color: #8d8d8c;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -341,7 +343,7 @@ html, body {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 22px 0 18px 0;
+  padding: 20px 0;
   border-bottom: 1px solid #e8e8e8;
   -webkit-transition: all 0.3s;
           transition: all 0.3s;
@@ -532,9 +534,10 @@ html, body {
   height: 14px;
   margin-left: 5px;
   border-radius: 50%;
-  font-size: 12px;
+  font-style: SemiBold;
+  font-size: 11px;
   color: #2985f7;
-  line-height: 14px;
+  line-height: 15px;
   background-color: #e4f0ff;
   cursor: pointer;
 }
@@ -1011,6 +1014,8 @@ html, body {
   height: 25px;
   margin: 30px 0;
   margin-right: 30px;
+  font-style: regular;
+  line-height: 16px;
 }
 
 .footer-menu {
@@ -1039,7 +1044,7 @@ html, body {
   width: auto;
   margin-right: 33px;
   padding: 30px 0;
-  font-weight: 400;
+  font-style: regular;
   text-transform: capitalize;
   color: #8d8d8c;
   cursor: pointer;
@@ -1055,7 +1060,7 @@ html, body {
 }
 
 .footer-menu__item_active {
-  font-weight: 500;
+  font-style: regular;
   color: #000;
   -webkit-transition: all 0.5s;
           transition: all 0.5s;
